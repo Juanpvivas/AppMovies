@@ -1,4 +1,4 @@
-package com.vivcom.appmovies.model.dataBase
+package com.vivcom.appmovies.data.dataBase
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

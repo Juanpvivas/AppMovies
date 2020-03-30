@@ -1,4 +1,4 @@
-package com.vivcom.appmovies.model.dataBase
+package com.vivcom.appmovies.data.dataBase
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

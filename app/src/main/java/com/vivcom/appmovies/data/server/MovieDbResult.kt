@@ -1,4 +1,4 @@
-package com.vivcom.appmovies.model.server
+package com.vivcom.appmovies.data.server
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

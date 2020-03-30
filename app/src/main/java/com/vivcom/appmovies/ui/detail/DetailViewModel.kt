@@ -2,12 +2,16 @@ package com.vivcom.appmovies.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.vivcom.appmovies.model.dataBase.Movie
-import com.vivcom.appmovies.model.server.MoviesRepository
 import com.vivcom.appmovies.ui.common.ScopedViewModel
+import com.vivcom.domain.Movie
+import com.vivcom.usecases.FindMovieById
+import com.vivcom.usecases.ToggleMovieFavorite
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val movieId: Int, private val moviesRepository: MoviesRepository) :
+class DetailViewModel(private val movieId: Int,
+                      private val findMovieById: FindMovieById,
+                      private val toggleMovieFavorite: ToggleMovieFavorite
+) :
     ScopedViewModel() {
 
     class UiModel(val movie: Movie)
@@ -20,14 +24,14 @@ class DetailViewModel(private val movieId: Int, private val moviesRepository: Mo
         }
 
     private fun findMovie() = launch {
-        _model.value = UiModel(moviesRepository.findById(movieId))
+        _model.value = UiModel(findMovieById.invoke(movieId))
     }
 
     fun onFavoriteClicked() = launch {
         _model.value?.movie?.let {
             val updatedMovie = it.copy(favorite = !it.favorite)
             _model.value = UiModel(updatedMovie)
-            moviesRepository.update(updatedMovie)
+            toggleMovieFavorite.invoke(updatedMovie)
         }
     }
 }

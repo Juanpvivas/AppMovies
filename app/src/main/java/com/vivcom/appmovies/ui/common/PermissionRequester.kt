@@ -1,4 +1,4 @@
-package com.vivcom.appmovies
+package com.vivcom.appmovies.ui.common
 
 import android.app.Activity
 import com.karumi.dexter.Dexter

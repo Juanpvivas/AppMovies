@@ -2,12 +2,12 @@ package com.vivcom.appmovies.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.vivcom.appmovies.model.dataBase.Movie
-import com.vivcom.appmovies.model.server.MoviesRepository
 import com.vivcom.appmovies.ui.common.ScopedViewModel
+import com.vivcom.domain.Movie
+import com.vivcom.usecases.GetPopularMovies
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val moviesRepository: MoviesRepository) : ScopedViewModel() {
+class MainViewModel(private val getPopularMovies: GetPopularMovies) : ScopedViewModel() {
 
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
@@ -34,7 +34,7 @@ class MainViewModel(private val moviesRepository: MoviesRepository) : ScopedView
     fun onCoarsePermissionRequested() {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(moviesRepository.findPopularMovies())
+            _model.value = UiModel.Content(getPopularMovies.invoke())
         }
     }
 

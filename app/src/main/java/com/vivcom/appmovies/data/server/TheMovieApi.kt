@@ -1,4 +1,4 @@
-package com.vivcom.appmovies.model.server
+package com.vivcom.appmovies.data.server
 
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,4 +1,4 @@
-package com.vivcom.appmovies.model.server
+package com.vivcom.appmovies.data.server
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
